@@ -6,5 +6,15 @@ export interface simplifiedProduct{
     price: number;
     slug: string;
     category: string;
+}
 
+export interface fullProduct{
+
+    _id: string;
+    name: string;
+    images: any;
+    price: number;
+    slug: string;
+    category: string;
+    description: string;
 }
