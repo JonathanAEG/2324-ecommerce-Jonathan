@@ -1,8 +1,18 @@
+"use client"
+
 import { Button } from "@/components/ui/button";
 import { CheckCheck } from "lucide-react";
 import Link from "next/link";
+import { useEffect } from "react";
+import { useShoppingCart } from "use-shopping-cart";
 
 export default function SuccessStripe(){
+
+    const {clearCart} = useShoppingCart();
+
+    useEffect(()=>{
+        clearCart();
+    },[])
 
     return(
         <div className="h-screen">
