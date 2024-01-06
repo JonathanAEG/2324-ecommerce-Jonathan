@@ -17,4 +17,5 @@ export interface fullProduct{
     slug: string;
     category: string;
     description: string;
+    stripe: string;
 }
