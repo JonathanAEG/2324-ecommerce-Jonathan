@@ -13,7 +13,22 @@ import { Button } from '@/components/ui/button';
 
 export default function ShoppingCartModal(){
 
-    const {cartCount, shouldDisplayCart, handleCartClick, cartDetails, removeItem, totalPrice} = useShoppingCart();
+    const {cartCount, shouldDisplayCart, handleCartClick, cartDetails, removeItem, totalPrice, redirectToCheckout} = useShoppingCart();
+
+    const handleCheckoutClick = async(event:any)=>{
+        event.preventDefault();
+        try{
+            
+            const result = await redirectToCheckout();
+            if(result?.error){
+                console.log(result)
+            }
+        }catch(e){
+        
+            console.log(e);
+        }
+    }
+
 
     return(
         <Sheet open={shouldDisplayCart} onOpenChange={()=>handleCartClick()}>
@@ -78,14 +93,14 @@ export default function ShoppingCartModal(){
                     <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
                         <div className="flex justify-between text-base font-medium text-gray-900">
                             <p>Subtotal:</p>
-                            <p>{totalPrice}</p>
+                            <p>{totalPrice}€</p>
                         </div>
 
                         <p className="mt-0.5 text-sm text-gray-500">Shipping and taxes are calculated at checkout.</p>
                         
                         <div className="mt-6">
-                            <Button 
-
+                            <Button
+                            onClick={handleCheckoutClick}
                             className="w-full"
                             >
                                 Checkout
